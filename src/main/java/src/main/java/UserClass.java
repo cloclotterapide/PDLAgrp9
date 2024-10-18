@@ -1,5 +1,8 @@
 import java.lang.String;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class UserClass {
 	private int id;
@@ -8,15 +11,17 @@ public class UserClass {
 	private Date birth_date ;
 	private int phone;
 	private String email;
+	private String location;
 	
 	// Constructor
-	public UserClass (int id,String name,String surname,Date birth_date,int phone,String email) {
+	public UserClass (int id,String name,String surname,Date birth_date,int phone,String email,String location) {
 		this.id = id;
 		this.name = name;
 		this.surname = surname;
 		this.birth_date = birth_date;
 		this.phone = phone;
 		this.email = email;
+		this.location=location;
 	}
 	
 	//gets
@@ -43,6 +48,15 @@ public class UserClass {
 		return email;
 	}
 	
+	
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
 	//sets
 	public void set_id (int id) {
 		this.id = id;
@@ -66,6 +80,16 @@ public class UserClass {
 	
 	public void get_email(String new_email) {
 		this.email = new_email;
+	}
+	public String UserToString(UserClass User) {
+		return "('" + id +"', '"+name+ "', '"+ surname +"' , '"+ birth_date + "' ,'"+ phone + "' ,'"+ email + "' ,'"+location +"')" ;
+	}
+	
+	public void Add_User(UserClass User) throws SQLException {
+		Connection conn = DBConnexion.get_connection();
+		Statement stmt = conn.createStatement();
+		
+		stmt.executeUpdate("INSERT INTO User VALUES " + UserToString(User));
 	}
 	
 }

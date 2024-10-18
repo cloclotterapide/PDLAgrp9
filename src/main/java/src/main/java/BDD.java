@@ -2,10 +2,10 @@
 import java.sql.*;
 
 public class BDD {
-   static final String DB_URL = "srv-bdens.insa-toulouse.fr:3306/";
+   static final String DB_URL = "jdbc:mysql://srv-bdens.insa-toulouse.fr:3306/projet_gei_009";
    static final String USER = "projet_gei_009";
    static final String PASS = "Hi7ifaix";
-   static final String QUERY = "SELECT id, name,surname FROM Validator";
+   static final String QUERY = "SELECT id, name,surname FROM User";
 
    public static void main(String[] args) {
       // Open a connection
@@ -16,7 +16,7 @@ public class BDD {
          while (rs.next()) {
             // Retrieve by column name
             System.out.print("ID: " + rs.getInt("id"));
-            System.out.print(", name: " + rs.getInt("name"));
+            System.out.print(", name: " + rs.getString("name"));
             System.out.print(", surname: " + rs.getString("surname"));
 
          }

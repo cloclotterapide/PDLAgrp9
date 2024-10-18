@@ -1,5 +1,8 @@
 import java.lang.String;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Mission {
 	
@@ -99,5 +102,15 @@ public class Mission {
 		this.state = state;
 	}
 	
+	public String MissionToString() {
+        return "('" + mission_id + "', '" + validator_id + "', '" + userInNeed_id + "', '" + location + "', '" + mission_Date + "', '" + title + "', '" + description + "', '" + state + "')";
+    }
+
+    public void Add_Mission() throws SQLException {
+        Connection conn = DBConnexion.get_connection();
+        Statement stmt = conn.createStatement();
+        
+        stmt.executeUpdate("INSERT INTO Mission VALUES " + MissionToString());
+    }
 	
 }
