@@ -91,5 +91,6 @@ public class UserClass {
 		
 		stmt.executeUpdate("INSERT INTO User VALUES " + UserToString(User));
 	}
+	 
 	
 }

@@ -1,4 +1,6 @@
 import java.sql.Date;
+import java.sql.SQLException;
+
 
 public class Validator extends UserClass {
 	String validatorType;
@@ -18,7 +20,8 @@ public class Validator extends UserClass {
 	public void setValidatorType(String validatorType) {
 		this.validatorType = validatorType;
 	}
-
-	
+	public void validate_mission(Mission m) throws SQLException{
+		Mission.Mission_State_Udpate(m,Mission.mission_state.Accepted);
+	}
 	
 }

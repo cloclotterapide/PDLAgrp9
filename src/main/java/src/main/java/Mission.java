@@ -10,12 +10,12 @@ public class Mission {
 	private int userInNeed_id;
 	private int volunteer_id;
 	
-	private int mission_id;
+	private static int mission_id;
 	private String location;
 	private Date mission_Date;
 	private String title;
 	private String description;
-	private enum mission_state {Awaiting_Volunteer,Accepted,Started,Finished};
+	public enum mission_state {Awaiting_Volunteer,Accepted,Started,Finished};
 	private mission_state state;
 	
 	public Mission(int mission_id,int validator_id, int userInNeed_id, String location, Date mission_Date, String title, String description,mission_state state) {
@@ -102,15 +102,23 @@ public class Mission {
 		this.state = state;
 	}
 	
-	public String MissionToString() {
-        return "('" + mission_id + "', '" + validator_id + "', '" + userInNeed_id + "', '" + location + "', '" + mission_Date + "', '" + title + "', '" + description + "', '" + state + "')";
+	public String MissionToString(Mission m) {
+        return "('" + mission_id + "', '" + volunteer_id + "', '" + validator_id + "', '" + userInNeed_id + "', '" + location + "', '" + mission_Date + "', '" + title + "', '" + description + "', '" + state + "')";
     }
 
-    public void Add_Mission() throws SQLException {
+    public void Add_Mission(Mission m) throws SQLException {
         Connection conn = DBConnexion.get_connection();
         Statement stmt = conn.createStatement();
         
-        stmt.executeUpdate("INSERT INTO Mission VALUES " + MissionToString());
+        stmt.executeUpdate("INSERT INTO Mission VALUES " + MissionToString(m));
     }
 	
+    public static void Mission_State_Udpate(Mission m, mission_state ms)throws SQLException  {
+    	m.set_State(ms);
+    	Connection conn = DBConnexion.get_connection();
+        Statement stmt = conn.createStatement();
+        
+        stmt.executeUpdate("UPDATE Mission SET state =" + ms +" WHERE mission_id="+ mission_id );
+    }
+    
 }

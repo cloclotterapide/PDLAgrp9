@@ -6,4 +6,11 @@ public class Volunteer extends UserClass {
 		super(id,name, surname, birth_date,phone, email,location);
 	}
 	
+	
+	public void Volunteer_Select_Mission(Volunteer v, Mission m) {
+		
+		
+	}
+	
+	
 }
