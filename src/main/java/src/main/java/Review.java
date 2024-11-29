@@ -15,7 +15,7 @@ public class Review {
 	public Review(int review_id, int user_id, int grade, String comments) {
 		this.review_id = review_id;
 		this.user_id = user_id;
-		this.grade = grade;
+		this.grade = grade; 
 		this.comments = comments;
 	}
 	

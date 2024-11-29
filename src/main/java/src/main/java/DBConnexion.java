@@ -8,7 +8,9 @@ public class DBConnexion {
 	 static final String PASS = "Hi7ifaix";
 	 
 	 public static Connection get_connection() throws SQLException {
+		 System.out.println("Connexion BDD"); 
 		 return DriverManager.getConnection(DB_URL,USER, PASS);
+		 
 	 }
 	
 }

@@ -46,7 +46,7 @@ public class UserClass {
 	
 	public String get_email() {
 		return email;
-	}
+	} 
 	
 	
 	public String getLocation() {
@@ -85,8 +85,7 @@ public class UserClass {
 		return "('" + id +"', '"+name+ "', '"+ surname +"' , '"+ birth_date + "' ,'"+ phone + "' ,'"+ email + "' ,'"+location +"')" ;
 	}
 	
-	public void Add_User(UserClass User) throws SQLException {
-		Connection conn = DBConnexion.get_connection();
+	public void Add_User(UserClass User,Connection conn) throws SQLException {
 		Statement stmt = conn.createStatement();
 		
 		stmt.executeUpdate("INSERT INTO User VALUES " + UserToString(User));
