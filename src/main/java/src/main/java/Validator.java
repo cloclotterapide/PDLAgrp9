@@ -45,7 +45,7 @@ public class Validator extends UserClass {
         //System.out.println(validatortostring(validator));
         
         stmt.executeUpdate (validatortostring(validator));
-        System.out.println("Validator added successfully");
+
     }
 	
 }

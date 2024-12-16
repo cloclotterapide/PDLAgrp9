@@ -18,6 +18,7 @@ public class Main {
          	user1.Add_User(user1,connection);
          	user2.Add_User(user2,connection);
          	user3.Add_User(user3,connection);*/
+			stmt.executeUpdate("DELETE FROM Mission "); 
             stmt.executeUpdate("DELETE FROM Volunteer "); // Cleanup
             stmt.executeUpdate("DELETE FROM UserInNeed "); // Cleanup
             stmt.executeUpdate("DELETE FROM Validator "); // Cleanup

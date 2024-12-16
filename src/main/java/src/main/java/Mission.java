@@ -108,17 +108,20 @@ public class Mission {
 
     public void Add_Mission(Mission m,Connection conn) throws SQLException {
         Statement stmt = conn.createStatement();
-        System.out.println(MissionToString(m));
+        //System.out.println(MissionToString(m));
         stmt.executeUpdate("INSERT INTO Mission (id, location, mission_date, title, description, state, idValidator, idUserInNeed, idVolunteer) VALUES " + MissionToString(m));
-        System.out.println("add mission");   
+        //System.out.println("add mission");   
         
     }
 	
     public static void Mission_State_Udpate(Mission m, mission_state ms,Connection conn)throws SQLException  {
+ 
     	m.set_State(ms);
+    	
         Statement stmt = conn.createStatement();
         
-        stmt.executeUpdate("UPDATE Mission SET state =" + ms +" WHERE mission_id="+ m.mission_id );
+        //System.out.println("UPDATE Mission SET state =" + ms +" WHERE id="+ m.mission_id );
+        stmt.executeUpdate("UPDATE Mission SET state ='" + ms +"' WHERE id="+ m.mission_id );
     }
     
 }
