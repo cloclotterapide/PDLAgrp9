@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class test {
-    /*
+    
     @Test
     void testAddUser() {
         try {
@@ -33,7 +33,7 @@ public class test {
             fail("Exception occurred during testAddUser: " + e.getMessage());
         }
     }
-    */
+    
        @Test
         void testAddMission() {
             try {
@@ -44,7 +44,7 @@ public class test {
                 int idvo = 1000;
                 Volunteer volunteer = new Volunteer(idvo, "Jane", "Doe", java.sql.Date.valueOf("1990-04-20"), 987654321, "jane.doe@email.com", "Location B");
                 volunteer.addVolunteer(volunteer, connection);
-
+                
                 // Step 2: Add UserInNeed
                 int idne = 2000;
                 UserInNeed userInNeed = new UserInNeed(idne, "Alice", "Smith", java.sql.Date.valueOf("1975-08-10"), 1122334455, "alice.smith@email.com", "Location C");
@@ -56,16 +56,16 @@ public class test {
                 validator.addValidator(validator, connection);
 
                 // Step 4: Create Mission
-                int missionId = 100; // Example mission ID
+                int missionId = 108; // Example mission ID
                 Mission mission = new Mission(missionId, idvo, idva, idne, "Location A", Date.valueOf("2024-01-01"), "Mission Title", "Mission Description", Mission.mission_state.waiting_Volunteer);
                 
                 // Step 5: Add Mission to the database
                 System.out.println(mission.MissionToString(mission));
                 mission.Add_Mission(mission, connection);
-
+                
                 // Step 6: Verify the Mission exists in the database
                 Statement stmt = connection.createStatement();
-                ResultSet rs = stmt.executeQuery("SELECT * FROM Mission WHERE mission_id = " + missionId);
+                ResultSet rs = stmt.executeQuery("SELECT * FROM Mission WHERE id = " + missionId);
 
                 assertTrue(rs.next(), "Mission should be present in the database");
                 assertEquals("Location A", rs.getString("location"), "Location should match");
@@ -73,7 +73,7 @@ public class test {
                 assertEquals("waiting_Volunteer", rs.getString("state"), "State should match");
 
                 // Step 7: Cleanup after test
-                stmt.executeUpdate("DELETE FROM Mission WHERE mission_id = " + missionId);  // Correct delete statement syntax
+                stmt.executeUpdate("DELETE FROM Mission WHERE id = " + missionId);  // Correct delete statement syntax
                 stmt.executeUpdate("DELETE FROM Validator WHERE idValidator = " + idva);    // Cleanup Validator
                 stmt.executeUpdate("DELETE FROM Volunteer WHERE idVolunteer = " + idvo);    // Cleanup Volunteer
                 stmt.executeUpdate("DELETE FROM UserInNeed WHERE idUserInNeed = " + idne); // Cleanup UserInNeed

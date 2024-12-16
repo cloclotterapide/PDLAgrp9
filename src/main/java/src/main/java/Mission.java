@@ -103,14 +103,15 @@ public class Mission {
 	}
 	
 	public String MissionToString(Mission m) {
-        return "('" + mission_id +"', '"+ location + "', '" + mission_Date +"' , '" + title + "' ,'" + description + "', '" + state + "', '" +volunteer_id + "', '" + validator_id + "', '" + userInNeed_id +  "')" ;
+        return "(" + mission_id +", '"+ location + "', '" + mission_Date +"' , '" + title + "' ,'" + description + "', '" + state + "', " + validator_id + ", " + userInNeed_id  + ", " + volunteer_id  +  ")" ;
 	}
 
     public void Add_Mission(Mission m,Connection conn) throws SQLException {
         Statement stmt = conn.createStatement();
+        System.out.println(MissionToString(m));
+        stmt.executeUpdate("INSERT INTO Mission (id, location, mission_date, title, description, state, idValidator, idUserInNeed, idVolunteer) VALUES " + MissionToString(m));
+        System.out.println("add mission");   
         
-        stmt.executeUpdate("INSERT INTO Mission VALUES " + MissionToString(m));
-        System.out.println("add mission");
     }
 	
     public static void Mission_State_Udpate(Mission m, mission_state ms,Connection conn)throws SQLException  {
